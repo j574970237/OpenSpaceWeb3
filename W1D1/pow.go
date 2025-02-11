@@ -25,7 +25,7 @@ func main() {
         hash := sha256.Sum256([]byte(fmt.Sprintf("%s%d", nickname, nonce)))
         hashStr := hex.EncodeToString(hash[:])
         if strings.HasPrefix(hashStr, targetPrefix4) {
-            spend := time.Since(startTime)
+            spendTime := time.Since(startTime)
             fmt.Printf("寻找满足4个0开头的哈希值:\n")
             fmt.Printf("花费的时间: %s\n", spendTime)
             fmt.Printf("Hash的内容: %s%d\n", nickname, nonce)
@@ -35,7 +35,7 @@ func main() {
         nonce++
     }
 
-    // Reset nonce and start time for the next target
+    // 重置随机数和目标前缀
     nonce = 0
 	targetPrefix5 := "00000"
 
