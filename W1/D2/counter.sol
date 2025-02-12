@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 contract Counter {
     // 状态变量 counter
-    uint256 public counter;
+    uint256 public counter = 0;
 
     // 获取 counter 的值
     function get() public view returns (uint256) {
