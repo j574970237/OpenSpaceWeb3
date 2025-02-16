@@ -10,7 +10,7 @@ pragma solidity ^0.8.0;
 */
 contract Bank {
     address public admin;
-    mapping(address => uint256) private balances;
+    mapping(address => uint256) public balances;
     address[] public topUsers;
 
     constructor() {
