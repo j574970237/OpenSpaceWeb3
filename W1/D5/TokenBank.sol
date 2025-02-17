@@ -8,6 +8,8 @@ import "./BaseERC20.sol";
 TokenBank 有两个方法：
 1. deposit() : 需要记录每个地址的存入数量；
 2. withdraw（）: 用户可以提取自己的之前存入的 token。
+tips:
+用户调用deposit()之前需要先调用ERC20的approve(TokenBank, amount)，然后调用deposit()进行存款。
  */
 contract TokenBank {
     mapping(address => mapping(address => uint256)) public balances;
