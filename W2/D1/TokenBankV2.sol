@@ -12,7 +12,16 @@ import "../../W1/D5/TokenBank.sol";
 （备注：TokenBankV2 需要实现 tokensReceived 来实现存款记录工作）
  */
 contract TokenBankV2 is TokenBank {
+   
+    BaseERC20 public token;
+
+    constructor(BaseERC20 _token) {
+        token = _token;
+    }
+
     function tokensReceived(address from, uint256 amount) external returns (bool) {
+        // 调用限制
+        require(msg.sender == address(token), "Only token contract can call this function");
         balances[msg.sender][from] += amount;
         return true;
     }
