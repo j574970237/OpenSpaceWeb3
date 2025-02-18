@@ -21,8 +21,6 @@ contract NFTMarket is ITokenReceiver {
     BaseERC20WithCallBack public immutable token; // 添加 immutable 优化 gas
     MyERC721 public immutable nft;
     mapping(uint256 => Listing) public listings;
-    // token address => user address => amount
-    mapping(address => mapping(address => uint256)) public balances;
 
     // Events
     event NFTListed(uint256 indexed tokenId, address indexed seller, uint256 price);
