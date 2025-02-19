@@ -53,13 +53,13 @@ contract NFTMarket is ITokenReceiver {
 
         // 更新状态前进行所有检查
         require(token.balanceOf(msg.sender) >= listing.price, "Insufficient token balance");
+        // 添加授权检查
+        require(token.allowance(msg.sender, address(this)) >= listing.price, "Insufficient token allowance");
 
-        // 转移代币给Market合约
-        token.transferFrom(msg.sender, address(this), listing.price);
         // 转移 NFT 给买家
         transferNFT(msg.sender, tokenId);
         // 转移代币给卖家
-        token.transferFrom(address(this), listing.seller, listing.price);
+        token.transferFrom(msg.sender, listing.seller, listing.price);
 
         emit NFTSold(tokenId, listing.seller, msg.sender, listing.price);
     }
